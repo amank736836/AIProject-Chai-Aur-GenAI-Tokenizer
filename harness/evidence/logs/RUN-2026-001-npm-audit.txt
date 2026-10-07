@@ -1,0 +1,35 @@
+Full dependency tree: exit 1
+  total=23, critical=2, high=19, moderate=2, low=0
+  @humanfs/node: moderate (transitive)
+  @next/eslint-plugin-next: high (transitive)
+  @typescript-eslint/eslint-plugin: high (transitive)
+  @typescript-eslint/parser: high (transitive)
+  @typescript-eslint/type-utils: high (transitive)
+  @typescript-eslint/typescript-estree: high (transitive)
+  @typescript-eslint/utils: high (transitive)
+  ajv: moderate (transitive)
+  brace-expansion: high (transitive)
+  braces: high (transitive)
+  eslint-config-next: high (direct)
+  fast-glob: high (transitive)
+  flatted: high (transitive)
+  js-yaml: high (transitive)
+  micromatch: high (transitive)
+  minimatch: high (transitive)
+  nanoid: high (transitive)
+  next: critical (direct)
+  picomatch: high (transitive)
+  postcss: high (transitive)
+  sharp: high (transitive)
+  source-map-js: high (transitive)
+  tar: critical (transitive)
+
+Production-only tree: exit 1
+  total=5, critical=1, high=4, moderate=0, low=0
+  nanoid: high (transitive)
+  next: critical (direct)
+  postcss: high (transitive)
+  sharp: high (transitive)
+  source-map-js: high (transitive)
+
+Raw npm JSON reports are stored beside this summary. These are advisory matches from 2026-10-07, not proof of exploitability.

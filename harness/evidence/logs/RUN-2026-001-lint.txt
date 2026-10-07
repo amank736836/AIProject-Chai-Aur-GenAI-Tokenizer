@@ -1,0 +1,7 @@
+
+> bpe-demo@0.1.0 lint
+> next lint
+
+✔ No ESLint warnings or errors
+
+Exit code: 0

@@ -1,0 +1,6 @@
+{
+  "description": "Small synthetic ASCII corpus based on the project's tokenizer examples.",
+  "corpus": "chai aur code chai aur genai",
+  "input": "chai aur code",
+  "vocabTarget": 120
+}
