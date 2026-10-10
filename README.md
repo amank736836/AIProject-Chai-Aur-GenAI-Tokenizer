@@ -1,192 +1,185 @@
-# Custom Tokenizer Demo
+# Custom Tokenizer — *watch a tokenizer learn language*
 
-This project demonstrates a simple custom tokenizer that learns vocabulary from a text corpus, supports ENCODE/DECODE, and handles special tokens.
+A from-scratch **byte-pair encoding (BPE)** tokenizer for the *Chai aur GenAI · GenAI with
+JavaScript 1.0* challenge, wrapped in an animated single-page playground: paste a corpus,
+watch the vocabulary grow merge by merge, then encode/decode text with a live token stream.
 
-## Live Demo
-
-Check out the live demo at [bpe-demo-one.vercel.app](https://bpe-demo-one.vercel.app/).
-
----
-
-## Logo
-
-**Ama**
+**Live demo:** [bpe-demo-one.vercel.app](https://bpe-demo-one.vercel.app/) · **Logo/brand:** Ama
 
 ---
 
-## Card Background
+## ✨ The interface
 
-**Custom Tokenizer**  
-GenAI with JavaScript 1.0
+The UI is hand-built with CSS animations and small React components — **no animation
+library** (no Framer Motion, no GSAP), and every effect degrades gracefully under
+`prefers-reduced-motion`. Inspiration comes from the usual suspects in motion design:
+ambient backgrounds, scrollytelling, kinetic type, glassmorphism and micro-interactions.
 
----
-
-## GenAI Timeline
-
-- **Start:** Aug 11, 2025, 9:00 PM
-- **Due:** Aug 12, 2025, 9:00 PM
-- **Eval Begins:** Aug 12, 2025, 9:00 PM
-- **Eval Ends:** Aug 13, 2025, 9:00 PM
-
----
-
-## Instructions
-
-Build a custom tokenizer that learns vocab from text, supports ENCODE/DECODE and handles special tokens.
-
----
-
-## Submission Instructions
-
-- Submit code + small demo corpus + vocab file + short README with setup, usage and examples
-
----
-
-## Evaluation Parameters
-
-- Correctness of ENCODE/DECODE
-- Vocab quality
-- Performance
-- Code quality
-- Documentation
+| Effect | Where | Implementation |
+| --- | --- | --- |
+| Ambient background motion | whole page | Canvas particle constellation that reacts to the cursor, four drifting aurora blobs, parallax grid, film grain, vignette — `AnimatedBackground.tsx` |
+| Cursor spotlight | whole page | Eased lerp glow that trails the pointer — `CursorGlow.tsx` |
+| Reading progress | top of viewport | Gradient bar scaled from scroll depth — `ScrollProgress.tsx` |
+| Kinetic typography | hero | Line-mask reveals + a cyclic typewriter with a stable-width ghost sizer — `TypeWriter.tsx` |
+| Animated gradient text | hero headline | Panning multi-stop gradient clipped to text |
+| Faux-3D tilt + glare | every panel | Pointer-driven `rotateX/rotateY` with a specular highlight — `TiltCard.tsx` |
+| Magnetic buttons | all CTAs | Buttons lean toward the cursor and sweep a shine — `MagneticButton.tsx` |
+| Self-drawing SVG | logo, section icons | `stroke-dashoffset` draw-in, orbiting rings, rising chai steam — `AnimatedLogo.tsx` |
+| Live "scrollytelling" of training | §1 Train | Merge-by-merge stepper with a growing vocab ring, shrinking pair-frequency bars and a flashing merge log — `TrainVisualizer.tsx` |
+| Staggered token chips | §2 Encode | Each piece pops in with its own delay, hue-hashed colour, `␣` word-end marker and hover lift — `TokenStream.tsx` |
+| Self-drawing pipeline | §2 Encode | Animated dashed wire between text → pieces → ids → decoded — `PipelineFlow.tsx` |
+| Count-up statistics | stats strip | Eased number roll-up triggered by `IntersectionObserver` — `CountUp.tsx` |
+| Scroll reveals | every section | Directional fade/slide/zoom/blur variants — `Reveal.tsx` |
+| Glassmorphism + conic border | panels | `backdrop-filter` glass with a rotating conic-gradient hairline (`@property --border-angle`) |
+| Micro-interactions | copy buttons, filters, chips | Icon morphs into a self-drawing checkmark, toasts replace `alert()` — `CopyButton.tsx`, `Toast.tsx` |
+| Marquee ticker | footer | Infinite token ticker with edge masking — `SiteFooter.tsx` |
+| Theme morph | header | Sun ↔ moon switch with orbiting stars, persisted, no FOUC (inline bootstrap script) — `ThemeToggle.tsx` |
+| Faux terminal | hero | Scripted training session with a scanline sweep — `Hero.tsx` |
 
 ---
 
-## Max Marks
+## Sections
 
-**100**
+1. **Train the tokenizer** — corpus textarea, four preset corpora (Chai break, GenAI
+   glossary, Pangrams, Code snippet), a vocabulary-budget slider (100 → 300 slots) and a
+   speed control (0.5× / 1× / 2×). Training runs *visibly*: one merge per tick.
+2. **Encode & decode** — encoding is live on every keystroke. Shows the animated token
+   stream, raw ids, decoded text, a lossless round-trip pill and the pipeline diagram.
+   `⏎` copies the ids, `⌘/Ctrl + K` clears the field.
+3. **Vocabulary explorer** — search by token or id, filter (All / Special / Merged /
+   Chars), frequency bars, plus **Copy JSON** and **Download `vocab.json`**.
+4. **How the merges work** — three tilt cards with self-drawing glyphs.
+5. **Word-level reference demo** — the original frequency-based tokenizer from
+   `src/tokenizer.ts`, side by side with the BPE run.
+
+On first load the page trains itself once (animated), so the merge log is never empty.
 
 ---
 
-## Submission
+## Getting started
 
-- **Repository Link:** (GitHub, GitLab, etc.)
-- **Submission:**
-  - Enter your submission (markdown supported)
-  - Submission content must be at least 10 characters
-
----
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sh
+npm run build      # production build
+npm run start      # serve the production build
+npm run lint       # eslint (runs as part of `next build` too)
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Fonts are self-hosted from `src/fonts/` via `next/font/local`, so builds never need
+network access to Google Fonts (see `src/fonts/README.md`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Tokenizer API
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# Custom Tokenizer Demo
-
-This project demonstrates a simple custom tokenizer that learns vocabulary from a text corpus, supports ENCODE/DECODE, and handles special tokens.
-
-## Setup
-
-1. Install dependencies:
-   ```sh
-   npm install
-   ```
-2. Place your corpus in `demo_corpus.txt` (already provided).
-
-## Usage
-
-### Learn Vocabulary
+### `BPETokenizer` — `src/lib/bpe.ts`
 
 ```ts
-import { Tokenizer } from "./src/tokenizer";
-import fs from "fs";
+import { BPETokenizer } from "@/lib/bpe";
 
-const corpus = fs.readFileSync("demo_corpus.txt", "utf-8");
-const tokenizer = new Tokenizer();
-tokenizer.learnVocab(corpus, 100); // Learn vocab of size 100
-tokenizer.saveVocab("vocab.json");
+const tok = new BPETokenizer();
+tok.train("chai aur code chai aur genai …", 150);   // synchronous run
+
+tok.encode("chai is hot");            // number[]           → [2, 108, 115, 76, 83, 138, 3]
+tok.encodeDetailed("chai is hot");    // {id, token, kind}[] → for the UI chips
+tok.decode([2, 108, 115, 76, 83, 138, 3]); // string        → "chai is hot"
+tok.stats("chai is hot");             // chars, words, tokens, compression, unknown
+tok.vocab;                            // { token: id }      → JSON.stringify → vocab.json
+tok.vocabEntries();                   // every slot with its corpus frequency
+tok.mergeHistory;                     // MergeRecord[] (step, a, b, token, count, id)
 ```
 
-### Encode/Decode
+**Steppable training** (what powers the animation):
 
 ```ts
-// Load vocab
-const tokenizer = new Tokenizer();
-tokenizer.loadVocab("vocab.json");
-
-const text = "your text here";
-const tokens = tokenizer.encode(text);
-const decoded = tokenizer.decode(tokens);
-console.log(tokens, decoded);
+const { baseVocab, targetVocab } = tok.prepareTraining(corpus, 150);
+while (tok.vocabSize < tok.targetVocabSize) {
+  const merge = tok.stepMerge();      // MergeRecord | null
+  if (!merge) break;                  // corpus fully compressed
+}
 ```
 
-## Special Tokens
+Details worth knowing:
 
-- `<PAD>`: Padding
-- `<UNK>`: Unknown
-- `<BOS>`: Beginning of sequence
-- `<EOS>`: End of sequence
+- Base vocabulary = 4 special tokens + 95 printable ASCII + `</w>` (**100 slots**), plus a
+  slot for every non-ASCII character found in the corpus (Devanagari, emoji, …), so exotic
+  input degrades to single-character tokens instead of `<UNK>`.
+- `</w>` marks word endings, so the model learns pieces such as `the</w>`; `decode()` strips
+  the marker wherever it appears (including *inside* a merged piece) and re-joins words.
+- Encoding replays merges by **rank** (earliest learned merge first), the textbook BPE rule.
+- Unknown ids decode to `<UNK>` and are skipped, never crashing.
 
-## Example
+### `Tokenizer` — `src/tokenizer.ts`
 
+The original word-level tokenizer kept as a reference baseline:
+
+```ts
+const t = new Tokenizer();
+t.learnVocab(corpus, 50);   // frequency-ranked whole words
+t.encode("Hello world");    // [2, 4, 5, 3]  (BOS … EOS)
+t.decode([2, 4, 5, 3]);     // "Hello world"
 ```
-Input: Hello world
-Encode: [2, 5, 6, 3] // (BOS, Hello, world, EOS)
-Decode: Hello world
-```
 
-## Performance
+### Special tokens
 
-- Fast vocab learning and encoding/decoding for small corpora.
-
-## Files
-
-- `src/tokenizer.ts`: Tokenizer implementation
-- `demo_corpus.txt`: Demo corpus
-- `vocab.json`: Saved vocabulary
+| Token | Id | Meaning |
+| --- | --- | --- |
+| `<PAD>` | 0 | padding |
+| `<UNK>` | 1 | unknown |
+| `<BOS>` | 2 | beginning of sequence |
+| `<EOS>` | 3 | end of sequence |
 
 ---
 
-Feel free to extend for BPE or other algorithms!
+## Project structure
 
-# Developer Review & Feedback
-
-If you enjoyed using this custom tokenizer demo or found it helpful, please consider leaving a review or feedback for the developer!
-
-## How to Give Feedback
-
-- **Star the repository** if you liked the project.
-- **Open an issue** for bugs, suggestions, or feature requests.
-- **Share your experience** or improvements via pull requests.
-- **Contact the developer** directly for collaboration or questions.
-
-## Why Give Feedback?
-
-- Helps improve the project for everyone.
-- Motivates the developer to add new features and maintain the code.
-- Builds a stronger open-source community.
+```
+src/
+├── app/
+│   ├── globals.css          # design tokens (light/dark), keyframes, component styles
+│   ├── layout.tsx           # self-hosted fonts, metadata, no-FOUC theme bootstrap
+│   └── page.tsx             # page composition + tokenizer state machine
+├── components/              # AnimatedBackground, Hero, TiltCard, TokenStream, …
+├── fonts/                   # Geist Sans/Mono + Space Grotesk (SIL OFL 1.1)
+├── lib/
+│   ├── bpe.ts               # steppable BPE tokenizer
+│   └── hooks.ts             # useInView, useCountUp, useParallax, useCopy, …
+└── tokenizer.ts             # word-level reference tokenizer
+```
 
 ---
 
-Thank you for trying out the tokenizer demo!
+## Performance & accessibility
+
+- Page bundle ≈ **16 kB** of JS (116 kB first load, mostly React/Next) — motion is CSS +
+  canvas, not a library.
+- Particle count scales with viewport area; canvas renders at `devicePixelRatio` (capped 2×).
+- Scroll, pointer and parallax handlers are `requestAnimationFrame`-throttled; parallax
+  writes transforms directly instead of re-rendering React.
+- Semantic landmarks, `aria-label`s, `aria-pressed` toggles, focus-visible rings, and a
+  full `prefers-reduced-motion` path (no particles, no autoplay, instant training).
+
+---
+
+## Assignment brief (for reference)
+
+**Task:** build a custom tokenizer that learns a vocabulary from text, supports
+ENCODE/DECODE and handles special tokens. Submit code + a small demo corpus + vocab file +
+a short README with setup, usage and examples.
+
+**Evaluation:** correctness of ENCODE/DECODE · vocab quality · performance · code quality ·
+documentation — **max 100 marks**.
+
+**Timeline:** start Aug 11 2025 21:00 → due Aug 12 2025 21:00 · eval Aug 12 21:00 → Aug 13 21:00.
+
+---
+
+## Feedback
+
+Found a bug or have an idea? Open an issue or a pull request — reviews and stars welcome.
+
+Built with Next.js 15, React 19 and TypeScript. GenAI with JavaScript 1.0 · *chai ke saath*.

@@ -1,0 +1,11 @@
+{
+  "description": "Synthetic boundary inputs for the BPE tokenizer.",
+  "empty": "",
+  "whitespaceOnly": " \t\n ",
+  "paddedRepeatedWhitespace": "  chai\n aur  code  ",
+  "paddedSingleWord": "  chai  ",
+  "normalizedExpected": "chai aur code",
+  "unicodeCorpus": "chai नमस्ते 🌶 chai नमस्ते 🌶",
+  "unicodeInput": "नमस्ते 🌶",
+  "unseenUnicode": "🧋"
+}

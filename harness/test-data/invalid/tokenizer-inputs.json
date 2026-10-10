@@ -1,0 +1,5 @@
+{
+  "description": "Synthetic unsupported values for fallback-path tests.",
+  "unseenCodePoint": "🧋",
+  "unknownIds": [999999, -1]
+}

@@ -1,0 +1,72 @@
+TAP version 13
+# Subtest: AUT-001 / TC-001: fixed special IDs and 100-slot BPE base vocabulary
+ok 1 - AUT-001 / TC-001: fixed special IDs and 100-slot BPE base vocabulary
+  ---
+  duration_ms: 1.582159
+  type: 'test'
+  ...
+# Subtest: AUT-002 / TC-002: one merge selects the highest-frequency adjacent pair
+ok 2 - AUT-002 / TC-002: one merge selects the highest-frequency adjacent pair
+  ---
+  duration_ms: 6.035413
+  type: 'test'
+  ...
+# Subtest: AUT-003 / TC-003: trained BPE output has boundaries and round-trips known words
+ok 3 - AUT-003 / TC-003: trained BPE output has boundaries and round-trips known words
+  ---
+  duration_ms: 1.741756
+  type: 'test'
+  ...
+# Subtest: AUT-004 / TC-004: target is clamped to base and exhausted corpora stop safely
+ok 4 - AUT-004 / TC-004: target is clamped to base and exhausted corpora stop safely
+  ---
+  duration_ms: 0.217819
+  type: 'test'
+  ...
+# Subtest: AUT-005 / TC-005: corpus Unicode is encodable and unseen Unicode is reported
+ok 5 - AUT-005 / TC-005: corpus Unicode is encodable and unseen Unicode is reported
+  ---
+  duration_ms: 0.640117
+  type: 'test'
+  ...
+# Subtest: AUT-006 / TC-006: empty input and whitespace normalize without throwing
+ok 6 - AUT-006 / TC-006: empty input and whitespace normalize without throwing
+  ---
+  duration_ms: 0.478241
+  type: 'test'
+  ...
+# Subtest: AUT-007 / TC-007: full and merge-by-merge training agree
+ok 7 - AUT-007 / TC-007: full and merge-by-merge training agree
+  ---
+  duration_ms: 0.560273
+  type: 'test'
+  ...
+# Subtest: AUT-008 / TC-008: invalid numeric IDs decode safely to no visible text
+ok 8 - AUT-008 / TC-008: invalid numeric IDs decode safely to no visible text
+  ---
+  duration_ms: 0.35049
+  type: 'test'
+  ...
+# Subtest: AUT-009 / TC-009: fixed word-level reference sample round-trips
+ok 9 - AUT-009 / TC-009: fixed word-level reference sample round-trips
+  ---
+  duration_ms: 0.415836
+  type: 'test'
+  ...
+# Subtest: AUT-010 / TC-010: vocabulary entries and JSON IDs match trained vocabulary
+ok 10 - AUT-010 / TC-010: vocabulary entries and JSON IDs match trained vocabulary
+  ---
+  duration_ms: 1.552214
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 74.407977
+
+Exit code: 0

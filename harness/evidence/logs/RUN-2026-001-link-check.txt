@@ -1,0 +1,3 @@
+Verified 171 local Markdown links across 96 harness documents.
+
+Exit code: 0

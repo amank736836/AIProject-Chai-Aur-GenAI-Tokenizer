@@ -1,0 +1,6 @@
+{
+  "description": "Current fixed word-level example from src/app/page.tsx.",
+  "corpus": "Hello world from the tokenizer demo corpus",
+  "input": "Hello world from tokenizer",
+  "requestedVocabSize": 50
+}
