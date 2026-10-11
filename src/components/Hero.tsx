@@ -31,6 +31,11 @@ const SCRIPT: ScriptLine[] = [
 ];
 
 const FLOATING = ["<BOS>", "th", "e", "chai", "</w>", "42", "<EOS>", "gen", "ai"];
+const TYPEWRITER_PHRASES = [
+  "one merge at a time.",
+  "from raw text to ids.",
+  "chai ke saath GenAI.",
+];
 
 export default function Hero({ onTrain, onExample, vocabSize, mergeCount }: HeroProps) {
   const reduced = useReducedMotion();
@@ -76,13 +81,7 @@ export default function Hero({ onTrain, onExample, vocabSize, mergeCount }: Hero
           </span>
           <span className="line-mask">
             <span className="line-inner hero-typeline" style={{ "--line-delay": "300ms" } as React.CSSProperties}>
-              <TypeWriter
-                phrases={[
-                  "one merge at a time.",
-                  "from raw text to ids.",
-                  "chai ke saath GenAI.",
-                ]}
-              />
+              <TypeWriter phrases={TYPEWRITER_PHRASES} />
             </span>
           </span>
         </h1>

@@ -12,10 +12,10 @@
 - **Actual Result:** Assertions passed in AUT-004.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-004`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-002; BR-006
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-006 — Empty, whitespace-only and normalized text
 
@@ -29,7 +29,7 @@
 - **Actual Result:** Assertions passed in AUT-006. This confirms normalization, not exact formatting preservation.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-006`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-004; BR-004, BR-007, BR-008
 - **Related Bug:** BUG-002 concerns UI labeling, not the tokenizer's expected whitespace normalization.
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)

@@ -11,7 +11,10 @@
   --bg-deep: #e3e8f7;
   --text: #0b1020;
   --text-muted: #5c6579;
-  --text-faint: #8a92a6;
+  --text-faint: #626b80;
+  --token-ink-special: #855000;
+  --token-ink-merge: #006579;
+  --token-ink-unknown: #a61b34;
 
   --panel: rgba(255, 255, 255, 0.74);
   --panel-strong: rgba(255, 255, 255, 0.92);
@@ -59,7 +62,10 @@
   --bg-deep: #080b18;
   --text: #eef1fb;
   --text-muted: #a2abc4;
-  --text-faint: #767f97;
+  --text-faint: #8a92a6;
+  --token-ink-special: #fbbf24;
+  --token-ink-merge: #22d3ee;
+  --token-ink-unknown: #ff7a92;
 
   --panel: rgba(255, 255, 255, 0.045);
   --panel-strong: rgba(255, 255, 255, 0.08);
@@ -363,6 +369,7 @@ pre {
 }
 
 .site-header-inner {
+  position: relative;
   width: min(1240px, 92vw);
   margin: 0 auto;
   display: flex;
@@ -455,6 +462,10 @@ pre {
   background: color-mix(in srgb, var(--accent-1) 12%, transparent);
   transform: translateY(-1px);
 }
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
 .nav-underline {
   position: absolute;
   left: 50%;
@@ -478,6 +489,29 @@ pre {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.mobile-nav-toggle:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+.mobile-nav-toggle svg {
+  width: 18px;
+  height: 18px;
 }
 
 .github-link {
@@ -718,7 +752,8 @@ pre {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradient-slide 9s linear infinite;
+  animation: line-rise 1s var(--ease-out) var(--line-delay, 0ms) forwards,
+    gradient-slide 9s linear infinite;
 }
 @keyframes gradient-slide {
   to { background-position: 260% 50%; }
@@ -913,7 +948,7 @@ pre {
 .console-chip i {
   font-style: normal;
   font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
 }
 .console-chip.chip-special {
   background: rgba(251, 191, 36, 0.14);
@@ -1162,6 +1197,9 @@ pre {
 }
 .tilt-card.is-tilting {
   transition: transform 0.12s linear;
+}
+.tilt-card.is-interacting {
+  transition: none;
 }
 .tilt-glare {
   position: absolute;
@@ -2400,9 +2438,9 @@ pre {
   white-space: nowrap;
   color: var(--text);
 }
-.vocab-special .vocab-token { color: var(--accent-3); }
-.vocab-merge .vocab-token { color: var(--accent-2); }
-.vocab-unk .vocab-token { color: #ff7a92; }
+.vocab-special .vocab-token { color: var(--token-ink-special); }
+.vocab-merge .vocab-token { color: var(--token-ink-merge); }
+.vocab-unk .vocab-token { color: var(--token-ink-unknown); }
 .vocab-freq {
   position: relative;
   height: 5px;
@@ -2462,7 +2500,7 @@ pre {
   font-family: var(--font-mono);
   font-size: 2.6rem;
   font-weight: 700;
-  color: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  color: color-mix(in srgb, var(--accent-1) 48%, var(--text-muted));
   letter-spacing: -0.05em;
 }
 .mini-card-glyph {
@@ -2821,6 +2859,31 @@ pre {
   .site-nav {
     display: none;
   }
+  .site-nav.is-mobile-open {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0.55rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 22px;
+    background: var(--panel-strong);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+  }
+  .site-nav.is-mobile-open .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.6rem 0.85rem;
+  }
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
   .site-header-actions {
     margin-left: auto;
   }
@@ -2869,6 +2932,10 @@ pre {
 }
 
 @media (max-width: 520px) {
+  .floating-chips {
+    left: 0;
+    right: 0;
+  }
   .stats-strip {
     grid-template-columns: minmax(0, 1fr);
   }

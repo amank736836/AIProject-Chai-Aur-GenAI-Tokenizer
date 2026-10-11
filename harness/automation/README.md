@@ -1,30 +1,40 @@
 # Automation
 
-## What is automated
+## Automated layers
 
-The checked-in project had no automated test framework or tests. This harness adds a small test runner for the core TypeScript tokenizers using the existing `typescript` package and Node's built-in `node:test` module; it adds no package dependency. It covers BPE vocabulary/training/encoding/decoding/edge behavior, vocabulary serialization, and the reference tokenizer's valid sample path.
+This harness now has two executable layers:
 
-There is no custom API or database to automate. React/browser workflows remain manual because Playwright/Cypress/Jest/Vitest are not installed and adding one is not justified by the current task.
+1. **Tokenizer module suite** — Node's built-in `node:test` compiles the BPE and word-level tokenizer modules into a temporary directory and runs 10 unit cases.
+2. **Browser E2E suite** — Playwright runs against the optimized Next.js production build in bundled Chromium. It covers responsive widths, navigation, keyboard/touch, training, encoding edge cases, vocabulary search/export, axe-core audits, and delayed/offline client-side interaction.
+
+No custom API or database exists in the app source, so no API/database suite is present.
 
 ## Run
 
-From repository root, after `npm ci`:
+From repository root after `npm ci`:
 
 ```sh
 node harness/automation/scripts/run-tokenizer-tests.mjs
 node harness/automation/scripts/verify-harness-links.mjs
+npm run lint
+npx tsc --noEmit
+npm run test:e2e
 ```
 
-The runner compiles only `src/lib/bpe.ts` and `src/tokenizer.ts` into a temporary OS directory and deletes the directory on completion. It does not modify app source or generated files. Expected: 10 TAP tests pass; the actual recorded run is [`../test-results/historical/RUN-2026-001.md`](../test-results/historical/RUN-2026-001.md).
+`npm run test:e2e` first builds the optimized app, then invokes `@playwright/test` with `harness/automation/e2e/playwright.config.mjs`. The config starts the production server on port 4173. `@sparticuz/chromium` supplies Chromium and the Linux libraries needed in this sandbox; no separate browser download is required. The touch test uses an isolated mobile/touch-enabled Chromium context. Test output is placed in the root `.playwright-results/` directory and ignored by Git.
+
+The suite is intentionally Chromium-only in this environment. Do not represent it as Firefox, Safari/WebKit, Edge, physical-device or true browser-zoom coverage. RUN-2026-002 also tests effective CSS viewport proxies for zoom, explicitly marked as proxies.
 
 ## Layout
 
 - `scripts/run-tokenizer-tests.mjs` — compiler + Node test orchestration (`AUT-001`–`AUT-010`).
-- `scripts/verify-harness-links.mjs` — dependency-free local Markdown link check (`AUT-016`).
+- `scripts/verify-harness-links.mjs` — dependency-free local Markdown link checker (`AUT-016`).
 - `unit/tokenizer.test.mjs` — `AUT-001`–`AUT-010`, linked to `TC-001`–`TC-010`.
-- Command checks: `AUT-011` lint, `AUT-012` type-check, `AUT-013` production build, `AUT-014` full npm audit, `AUT-015` production-only npm audit.
-- `api/`, `ui/`, `database/` automation is intentionally absent: no custom API/database and no browser framework. Add a tool only after a clear need and agreed maintenance owner.
+- `e2e/playground.spec.mjs` — `AUT-017` rendered production-page checks and evidence capture; `AUT-018` axe-core WCAG-tagged audit.
+- `e2e/fixtures.mjs` — isolated headless Chromium and touch-enabled page fixtures.
+- `e2e/playwright.config.mjs` — production server, viewport-independent base config, timeout and artifact directory.
+- Command checks: `AUT-011` lint, `AUT-012` type-check, `AUT-013` production build, `AUT-014` full npm audit, `AUT-015` production-only npm audit, `AUT-016` harness link check.
 
-## Maintenance rules
+## Evidence and limits
 
-Keep tests deterministic, use synthetic fixtures in `../test-data/`, reference stable TC/AUT IDs, and record actual status/evidence. Do not alter application behavior merely to make tests pass; log a product defect and request scope if a source fix is needed.
+RUN-2026-002's raw logs, screenshots and findings are under `../evidence/`. Browser E2E proves only the assertions executed in Chromium. Screen-reader/manual color-contrast review, full keyboard-tab traversal, true browser zoom, cross-engine testing, performance budgets, VAPT and hosted deployment checks remain unverified. Preserve exact PASS/PARTIAL/NOT_EXECUTED states in the run record.

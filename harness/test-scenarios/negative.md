@@ -8,4 +8,4 @@
 4. Enter markup-looking text in the browser and verify it is rendered as literal text, not executed.
 5. Deny clipboard access and verify the UI does not crash and provides a status message.
 
-**Cases:** TC-004, TC-005, TC-008, TC-104, TC-106. Module cases executed as listed in RUN-2026-001; markup/clipboard browser checks NOT_EXECUTED.
+**Cases:** TC-004, TC-005, TC-008, TC-104, TC-106. Module cases passed in RUN-2026-002; literal markup-inertness passed in Chromium (TC-106). Clipboard-denial behavior remains untested.

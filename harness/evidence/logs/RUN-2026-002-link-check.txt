@@ -1,0 +1,2 @@
+Verified 233 local Markdown links across 100 harness documents.
+Exit: 0

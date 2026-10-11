@@ -13,6 +13,7 @@ node harness/automation/scripts/verify-harness-links.mjs
 npm run lint
 npx tsc --noEmit
 npm run build
+npm run test:e2e
 ```
 
 For a production dependency audit:
@@ -22,7 +23,7 @@ npm audit
 npm audit --omit=dev
 ```
 
-At the initial harness run, all 10 tokenizer tests, local link validation, lint, type-check and build passed; npm audits reported findings and exited 1. See [`test-results/latest/execution.md`](test-results/latest/execution.md). A successful build is not a browser UI test. There is no configured API or database suite.
+The latest recorded audit run is RUN-2026-002: tokenizer tests, link validation, lint, type-check, production build and Chromium E2E passed; the full dependency audit still reports five high findings in development/build tooling, while the production-only audit has zero. See [`test-results/latest/execution.md`](test-results/latest/execution.md) and the [application audit report](reports/application-audit-RUN-2026-002.md). Browser coverage is headless Chromium only; other engines and true browser zoom remain untested. There is no custom API or database suite.
 
 ## Where things live
 

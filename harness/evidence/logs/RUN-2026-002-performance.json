@@ -1,0 +1,52 @@
+{
+  "context": "local production build; 120ms delay on Next static assets",
+  "metrics": {
+    "ttfbMs": 8,
+    "domContentLoadedMs": 241,
+    "loadEventMs": 396,
+    "lcpMs": 864,
+    "cls": 0,
+    "longTasksOver50Ms": [
+      54,
+      166,
+      60,
+      58
+    ],
+    "eventTimingEntries": [
+      {
+        "name": "pointerover",
+        "duration": 16
+      },
+      {
+        "name": "pointerenter",
+        "duration": 16
+      },
+      {
+        "name": "pointerenter",
+        "duration": 16
+      },
+      {
+        "name": "pointerenter",
+        "duration": 16
+      },
+      {
+        "name": "pointerenter",
+        "duration": 16
+      },
+      {
+        "name": "pointerenter",
+        "duration": 16
+      },
+      {
+        "name": "mouseover",
+        "duration": 16
+      }
+    ],
+    "resourceCount": 10,
+    "encodedResourceBytes": 329635,
+    "decodedResourceBytes": 751574,
+    "jsResourceCount": 6
+  },
+  "failedRequests": [],
+  "pageErrors": []
+}

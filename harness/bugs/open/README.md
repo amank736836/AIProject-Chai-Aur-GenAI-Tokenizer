@@ -2,5 +2,4 @@
 
 | ID | Title | Severity | Priority | Status |
 | --- | --- | --- | --- | --- |
-| [BUG-001](BUG-001.md) | Resolved dependency tree has npm audit findings | Critical findings present | P1 | OPEN |
-| [BUG-002](BUG-002.md) | Round-trip indicator can call normalized output lossless | Low | P2 | OPEN |
+| [BUG-001](BUG-001.md) | High npm audit advisory matches in development tooling; production audit clean | High advisory matches (dev dependencies only) | P2 | OPEN |

@@ -138,7 +138,12 @@ export default function VocabExplorer({
         </div>
       </div>
 
-      <ul className="vocab-list" key={`${filter}-${query}`}>
+      <ul
+        className="vocab-list"
+        key={`${filter}-${query}`}
+        tabIndex={0}
+        aria-label="Vocabulary entries"
+      >
         {rows.map((row, index) => (
           <li
             className={`vocab-row vocab-${row.kind}`}

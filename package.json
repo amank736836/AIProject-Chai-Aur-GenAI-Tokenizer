@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "test:e2e": "npm run build && playwright test --config=harness/automation/e2e/playwright.config.mjs"
   },
   "dependencies": {
     "next": "16.4.0",
@@ -14,14 +15,17 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/eslintrc": "^3",
     "@fontsource-variable/space-grotesk": "^5.2.1",
+    "@playwright/test": "^1.64.0",
+    "@sparticuz/chromium": "^153.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.4.6",
+    "eslint-config-next": "^16.4.0",
     "geist": "^1.5.1",
     "tailwindcss": "^4",
     "typescript": "^5"

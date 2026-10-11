@@ -27,6 +27,20 @@ export default function TiltCard({
     (event: React.PointerEvent<HTMLDivElement>) => {
       const node = ref.current;
       if (!node || reduced) return;
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest("button, a, input, textarea, select, [role='button'], [contenteditable='true']")
+      ) {
+        // A rotating parent can move a small control out from under the pointer
+        // between pointerdown and click. Keep controls stationary and clickable.
+        node.style.setProperty("--rx", "0deg");
+        node.style.setProperty("--ry", "0deg");
+        node.classList.remove("is-tilting");
+        node.classList.add("is-interacting");
+        return;
+      }
+      node.classList.remove("is-interacting");
       const rect = node.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
       const px = (event.clientX - rect.left) / rect.width;
@@ -45,7 +59,7 @@ export default function TiltCard({
     if (!node) return;
     node.style.setProperty("--rx", "0deg");
     node.style.setProperty("--ry", "0deg");
-    node.classList.remove("is-tilting");
+    node.classList.remove("is-tilting", "is-interacting");
   }, []);
 
   return (

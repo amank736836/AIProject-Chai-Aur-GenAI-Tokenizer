@@ -14,7 +14,13 @@ export default function ThemeToggle() {
   useEffect(() => {
     setMounted(true);
     const root = document.documentElement;
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
+    let stored: Theme | null = null;
+    try {
+      const candidate = window.localStorage.getItem(STORAGE_KEY);
+      if (candidate === "light" || candidate === "dark") stored = candidate;
+    } catch {
+      // Storage can be unavailable in private or restricted browser contexts.
+    }
     const next =
       stored ??
       (window.matchMedia("(prefers-color-scheme: light)").matches
@@ -28,7 +34,11 @@ export default function ThemeToggle() {
     const next: Theme = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.dataset.theme = next;
-    window.localStorage.setItem(STORAGE_KEY, next);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // Theme changes still apply for the current page session.
+    }
   };
 
   return (

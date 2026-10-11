@@ -1,15 +1,14 @@
 # Test Tools Inventory
 
-Only tools already in the project or Node runtime are used by the automation. No new package was added.
-
 | Tool | Purpose | Where configured / how to run | Status |
 | --- | --- | --- | --- |
-| Node.js built-in test runner (`node:test`) | Executable tokenizer unit tests and assertions | `node harness/automation/scripts/run-tokenizer-tests.mjs` | Harness suite added; actual result in RUN-2026-001 |
-| TypeScript compiler / compiler API | Strictly compile tokenizer sources to a temporary test directory | Existing `typescript` dev dependency; invoked by the runner | Existing project dependency |
-| Next.js CLI | Development, production build/start, lint | `npm run dev`, `npm run build`, `npm run start`, `npm run lint` | Existing |
-| ESLint 9 + Next config | Source lint | `npm run lint` | Existing; passed RUN-2026-001 |
-| Harness link checker | Verify local Markdown references | `node harness/automation/scripts/verify-harness-links.mjs` | Added script; recorded as AUT-016 |
-| `npm audit` | Dependency advisory matching | `npm audit` and `npm audit --omit=dev` | Existing npm; findings tracked by BUG-001 |
-| Browser DevTools / manual browser | UI/network/accessibility/performance checks | Procedure in `setup.md` and scenario docs | Browser tool not installed/used in this environment |
+| Node.js built-in test runner (`node:test`) | Core tokenizer unit cases | `node harness/automation/scripts/run-tokenizer-tests.mjs` | 10 tests passed in RUN-2026-002 |
+| TypeScript compiler / compiler API | Compile tokenizer sources for unit tests and type-check app | Existing dependency; runner and `npx tsc --noEmit` | Passed RUN-2026-002 |
+| Next.js CLI | Development, production build/start | `npm run build`, `npm run start` | Build passed RUN-2026-002 |
+| ESLint 9 + Next config | Source and harness lint | `npm run lint` | Passed RUN-2026-002 |
+| Playwright Test + bundled Sparticuz Chromium | Rendered production-page E2E in headless Chromium; no external browser install | `npm run test:e2e`; `harness/automation/e2e/` | 11 tests passed in Chromium in RUN-2026-002; Firefox/WebKit/Edge not exercised |
+| axe-core Playwright | Automated WCAG-tagged checks | In Playwright E2E suite | Zero automated violations in 4 viewport/theme audits; contrast rule has incomplete manual-review results |
+| Harness link checker | Verify local Markdown references | `node harness/automation/scripts/verify-harness-links.mjs` | Passed in RUN-2026-002; see latest run record |
+| `npm audit` | Dependency advisory matching | `npm audit`, `npm audit --omit=dev` | Five high dev/build-tree matches; zero production-only findings (RUN-2026-002) |
 
-No API, database, mocking, performance, browser automation, or VAPT tool is configured. No test framework such as Jest, Vitest, Playwright or Cypress was found.
+The harness has no database or custom API automation because the checked-in app has neither. The current automated browser engine is Chromium only; supported-browser policy remains unknown.

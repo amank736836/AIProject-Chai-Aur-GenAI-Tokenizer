@@ -12,10 +12,10 @@
 - **Actual Result:** Assertions passed in AUT-005.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-005`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-002, REQ-004; BR-003
 - **Related Bug:** None; unseen Unicode fallback is expected behavior.
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-008 — Decode out-of-range IDs without throwing
 
@@ -29,7 +29,7 @@
 - **Actual Result:** Assertions passed in AUT-008.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-008`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-004; BR-007
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)

@@ -12,8 +12,8 @@ Never state that a test passed unless it was actually executed in the stated env
 
 1. Read `harness/README.md`, `PROJECT_OVERVIEW.md`, `ARCHITECTURE.md`, `TESTING_STRATEGY.md`, `TESTING_STATUS.md` and relevant feature/requirement docs.
 2. Inspect current source/config and `git status`; documentation may lag source.
-3. The app is a Next.js 15 / React 19 / TypeScript client-side tokenizer playground. Core modules are `src/lib/bpe.ts` and `src/tokenizer.ts`; page/state is in `src/app/page.tsx`.
-4. Current repository evidence shows no custom API, database, auth provider or existing browser automation framework. Do not invent them. Confirm again if architecture has changed.
+3. The app is a Next.js 16.4 / React 19 / TypeScript client-side tokenizer playground. Core modules are `src/lib/bpe.ts` and `src/tokenizer.ts`; page/state is in `src/app/page.tsx`.
+4. Current repository evidence shows no custom API, database or auth provider. Playwright/axe-core Chromium automation exists under `automation/e2e/`; confirm current configuration and browser coverage before use.
 5. Use `UNKNOWN / REQUIRES VALIDATION` wherever source/config/docs do not establish an answer.
 
 ## 2. Plan
@@ -30,12 +30,15 @@ From repository root, after `npm ci`:
 
 ```sh
 node harness/automation/scripts/run-tokenizer-tests.mjs
+node harness/automation/scripts/verify-harness-links.mjs
 npm run lint
 npx tsc --noEmit
-npm run build
+npm run test:e2e
+npm audit
+npm audit --omit=dev
 ```
 
-Run `npm audit` / `npm audit --omit=dev` when checking dependencies; current recorded state has findings in BUG-001. Browser scenarios are in `test-scenarios/ui.md`; the repository does not include browser automation. API/database scenarios are N/A for the current architecture. Performance and VAPT procedures are plans, not executed tests.
+The Playwright suite runs a local production build in bundled headless Chromium only. Record untested engines, true browser zoom, physical devices and manual assistive-technology checks explicitly. API/database scenarios are N/A for the current architecture. Performance evidence is a synthetic local sample, not a target-based benchmark; VAPT remains unexecuted.
 
 Do not run destructive commands, deploy, change dependencies, or modify application behavior merely to make a test pass.
 

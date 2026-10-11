@@ -2,8 +2,8 @@
 
 These checkboxes describe expected criteria, not release sign-off; execution status is recorded in the linked test cases.
 
-- [ ] Navigation reaches the intended section and active state follows it (TC-101; browser NOT_EXECUTED).
-- [ ] Theme switch updates palette and survives reload via `tokenizer-theme`; first visit follows OS scheme (TC-105; NOT_EXECUTED).
-- [ ] Speed selection survives reload and interval value is one of the three supported values (TC-102/105; NOT_EXECUTED).
-- [ ] With reduced motion enabled, CSS motion is reduced and training does not require a timed animation (TC-105; NOT_EXECUTED).
-- [ ] Mobile layout, keyboard focus order, semantics and screen-reader messages are usable at supported target sizes (TC-107; target matrix UNKNOWN / REQUIRES VALIDATION; NOT_EXECUTED).
+- [x] Mobile navigation opens by keyboard/touch, Escape closes and restores focus, anchors/back-forward work (TC-101/107; Chromium, RUN-2026-002).
+- [x] User-selected light/dark theme survives reload; blocked localStorage falls back to OS color scheme and still allows an in-session toggle (TC-105; Chromium, RUN-2026-002). Normal first-visit OS-scheme fallback without a stored value remains untested.
+- [x] Speed selection survives reload and stores the selected 38ms interval (TC-102/105; Chromium, RUN-2026-002).
+- [ ] Full reduced-motion equivalence (CSS and training duration) remains unverified; both reduced and no-preference contexts were exercised.
+- [ ] Full tab-order/screen-reader checks remain untested. Responsive geometry, touch interaction and four WCAG-tagged axe audits passed in Chromium; axe left color-contrast nodes incomplete for manual review (TC-107).
