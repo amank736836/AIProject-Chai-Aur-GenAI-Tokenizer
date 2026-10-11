@@ -11,4 +11,4 @@
 
 Expected behavior supported by source: whitespace is normalized; corpus Unicode code points are added to the base vocab; unseen symbols can become `<UNK>`; training stops when no pairs remain. For NUL/collisions, combining marks, very large data, repeated instance reuse and concurrent use, expected behavior/performance is **UNKNOWN / REQUIRES VALIDATION**.
 
-**Cases:** TC-004–TC-008; TC-108. Executed cases are noted per test case; browser/stress cases NOT_EXECUTED.
+**Cases:** TC-004–TC-008; TC-108. Unit boundaries and TC-108 exact-whitespace UI behavior passed in RUN-2026-002; large-corpus stress and other browser-only edge cases remain NOT_EXECUTED.

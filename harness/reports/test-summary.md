@@ -1,22 +1,21 @@
-# Test Summary — RUN-2026-001
+# Test Summary — RUN-2026-002
 
-**Date:** 2026-10-07  
-**Commit under test:** `8f61d26840e4ac916b33ecf668b93ac2efd6e9ee` (application source)  
-**Environment:** Node 22.22.3, npm 10.9.8, Linux sandbox.
+**Date:** 2026-10-11<br>
+**Commit basis:** `0a1c115ba180dd62c46e9b2d189fdf97a1c7a193`; audited changes were in the working tree on the session branch and later committed for the PR.<br>
+**Environment:** Linux sandbox; Node 22.22.3, npm 10.9.8; headless Chromium 153.0.8010.0 against the optimized local production build.
 
 ## Summary
 
-- Tokenizer automation: **10 passed, 0 failed**.
-- Harness link validation: **PASS** — 171 local Markdown links checked across 96 documents.
-- ESLint: **PASS** — no warnings/errors.
-- TypeScript: **PASS** — `npx tsc --noEmit`.
-- Production build: **PASS** — Next.js statically prerendered `/` and `/_not-found`.
-- npm audit: **FAIL** — 23 total findings (2 moderate, 19 high, 2 critical); production-only audit: 5 findings (4 high, 1 critical). See BUG-001.
-- Manual browser cases: **0 executed / 8 not run**.
-- Database/API functional testing: not applicable to current source. Performance and VAPT: not executed.
+- Tokenizer module tests: **10 passed, 0 failed**.
+- Chromium browser tests: **11 passed, 0 failed**; included the full requested viewport sweep, mobile landscape, keyboard/touch, training/encode/vocabulary workflows, accessibility audits and offline interaction.
+- Lint, TypeScript, production build and local Markdown-link validation: **all passed**. Link check verified 233 links across 100 harness documents.
+- Full npm audit: **FAIL** — five high advisory matches in development/build tooling, no critical/moderate/low. Production-only audit: **PASS** — zero findings.
+- axe-core: **0 violations** in four WCAG-tagged mobile/desktop light/dark runs; color-contrast remained incomplete for hundreds of nodes.
+- Performance: one descriptive local sample recorded; no formal SLO/device profile, so not graded.
+- API/database tests: not applicable to the current source. VAPT and deployed-host checks: not executed.
 
 ## Recommendation
 
-**NOT READY** until the dependency audit findings have an explicit owner/mitigation decision and critical browser/UI scenarios have been exercised. Build success alone is not a release sign-off.
+**READY WITH RISKS for a Chromium-first demo; not a cross-browser, accessibility-conformance or deployment sign-off.** Confirm a compatible resolution/acceptance for BUG-001's development dependency findings. Before broad release, execute Firefox/WebKit/Edge, true browser zoom, manual screen-reader/contrast review and representative performance/deployment checks.
 
-Detailed commands and limitations: [`../test-results/historical/RUN-2026-001.md`](../test-results/historical/RUN-2026-001.md). Evidence: [`../evidence/logs/`](../evidence/README.md).
+Detailed evidence and limitation notes: [`RUN-2026-002`](../test-results/historical/RUN-2026-002.md), [severity-ranked audit report](application-audit-RUN-2026-002.md), and [`evidence/logs/`](../evidence/README.md).

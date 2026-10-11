@@ -61,7 +61,7 @@ export default function SiteFooter() {
         </div>
 
         <p className="footer-note">
-          Built with Next.js 15, React 19 and hand-rolled CSS motion — no
+          Built with Next.js 16, React 19 and hand-rolled CSS motion — no
           animation libraries, and every effect respects{" "}
           <code>prefers-reduced-motion</code>.
         </p>

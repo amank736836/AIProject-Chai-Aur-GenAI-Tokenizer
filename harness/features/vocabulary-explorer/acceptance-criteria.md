@@ -2,8 +2,6 @@
 
 These checkboxes describe expected criteria, not release sign-off; execution status is recorded in the linked test cases.
 
-- [ ] Every visible vocabulary row carries a valid ID and token from the trained vocabulary (TC-010).
-- [ ] Search by token fragment and numeric ID; filters return the intended kinds (TC-104; UI NOT_EXECUTED).
-- [ ] Empty search results display an empty-state message (TC-104; UI NOT_EXECUTED).
-- [ ] Copy/download produce parseable JSON equal to the complete current vocabulary, regardless of visible filter (TC-104; UI NOT_EXECUTED).
-- [ ] Clipboard permission denial does not crash the page and communicates a warning (TC-104; UI NOT_EXECUTED).
+- [x] Every visible vocabulary row carries a valid ID and token from the trained vocabulary (TC-010; RUN-2026-002 unit tests).
+- [x] Token-fragment/ID/no-match search, All/Special/Merged/Chars filters, empty state, JSON clipboard/download and focus access pass in Chromium (TC-104; RUN-2026-002; automated subset).
+- [ ] Clipboard permission denial and byte-for-byte comparison with the complete map remain untested (TC-104).

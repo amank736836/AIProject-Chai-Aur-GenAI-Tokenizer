@@ -109,7 +109,7 @@ export default function TrainVisualizer({
           <span className="viz-hint">{merges.length} merges</span>
         </h3>
         {merges.length ? (
-          <ol className="merge-feed">
+          <ol className="merge-feed" tabIndex={0} aria-label="Recent merge history">
             {[...merges]
               .slice(-14)
               .reverse()

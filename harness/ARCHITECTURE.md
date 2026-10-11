@@ -65,4 +65,4 @@ No custom API server ─ no application database ─ no authentication provider 
 
 ## Test boundaries
 
-Tokenizer logic is directly unit-testable with the existing TypeScript compiler and Node's built-in test runner; no browser test framework is installed. The harness test runner compiles only `src/lib/bpe.ts` and `src/tokenizer.ts` to a temporary OS directory and removes it after execution. UI, browser compatibility, performance and deployment security require a browser/target environment and are currently manual/not executed.
+Tokenizer logic is directly unit-testable with TypeScript and Node's built-in test runner. The harness compiles only `src/lib/bpe.ts` and `src/tokenizer.ts` to a temporary OS directory. Playwright with bundled Chromium and axe-core also exercises rendered production behavior (`npm run test:e2e`); that does not cover Firefox/WebKit/Edge, true browser zoom, physical devices, full manual accessibility, performance SLOs or deployment security.

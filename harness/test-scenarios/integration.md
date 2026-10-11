@@ -9,4 +9,4 @@
 5. Browser localStorage provides theme/speed preferences; clipboard/download APIs handle user actions.
 6. Next.js build serves/prerenders the root page without an external API/database.
 
-Automated Node tests verify tokenizer-module boundaries; lint/typecheck/build verify compilation and prerender. End-to-end browser integrations 1–5 are NOT_EXECUTED. No backend→DB, auth→API or external-service integration exists to test in this repository.
+Automated Node tests verify tokenizer-module boundaries; RUN-2026-002 also exercised browser training/encode/vocabulary flows, theme/speed persistence, clipboard/download and offline local encoding in Chromium. The browser coverage is partial as detailed in the test cases. No backend→DB, auth→API or external-service integration exists to test in this repository.

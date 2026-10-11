@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AnimatedLogo from "./AnimatedLogo";
 import ThemeToggle from "./ThemeToggle";
 import { useScrollProgress } from "@/lib/hooks";
@@ -16,6 +16,19 @@ const NAV = [
 export default function SiteHeader() {
   const { y } = useScrollProgress();
   const [active, setActive] = useState<string>("train");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const mobileNavToggleRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMobileNavOpen(false);
+      mobileNavToggleRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileNavOpen]);
 
   useEffect(() => {
     const sections = NAV.map((item) => document.getElementById(item.id)).filter(
@@ -49,12 +62,17 @@ export default function SiteHeader() {
           <span className="brand-shimmer" aria-hidden="true" />
         </a>
 
-        <nav className="site-nav" aria-label="Sections">
+        <nav
+          className={`site-nav${mobileNavOpen ? " is-mobile-open" : ""}`}
+          id="section-navigation"
+          aria-label="Section navigation"
+        >
           {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               className={`nav-link${active === item.id ? " is-active" : ""}`}
+              onClick={() => setMobileNavOpen(false)}
             >
               {item.label}
               <span className="nav-underline" aria-hidden="true" />
@@ -63,8 +81,26 @@ export default function SiteHeader() {
         </nav>
 
         <div className="site-header-actions">
+          <button
+            ref={mobileNavToggleRef}
+            type="button"
+            className="mobile-nav-toggle"
+            aria-label={mobileNavOpen ? "Close section navigation" : "Open section navigation"}
+            aria-expanded={mobileNavOpen}
+            aria-controls="section-navigation"
+            onClick={() => setMobileNavOpen((open) => !open)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              {mobileNavOpen ? (
+                <path d="m6 6 12 12M18 6 6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
           <a
             className="btn btn-outline btn-sm github-link"
+            aria-label="View source repository on GitHub"
             href="https://github.com/amank736836/Chai-Aur-GenAI-Tokenizer_AIProject"
             target="_blank"
             rel="noreferrer noopener"

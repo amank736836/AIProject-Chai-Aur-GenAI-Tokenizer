@@ -1,35 +1,37 @@
-# Requirements-to-Tests Traceability
+# Requirements-to-Tests Traceability — RUN-2026-002
 
-Traceability is based on code-derived requirements in [`../requirements/functional-requirements.md`](../requirements/functional-requirements.md). For each row, PASS applies only to the named automated/module/build check; it does not imply the browser experience is verified. `NOT_RUN` is intentional where no execution evidence exists.
+Traceability follows code-derived requirements in [`../requirements/functional-requirements.md`](../requirements/functional-requirements.md). A PASS applies only to assertions actually run; `PARTIAL` denotes scoped evidence and does not mean the complete requirement was accepted.
 
-| Requirement | Feature | Scenario | Test case | Automated check | Execution result | Evidence / coverage note |
-| --- | --- | --- | --- | --- | --- | --- |
-| REQ-001 — Train corpus-derived BPE vocab | FEAT-001 | SCN-002 | TC-002, TC-007 | AUT-002, AUT-007 | PASS, RUN-2026-001 | [Tokenizer log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt); pair/train core verified. |
-| REQ-002 — Base tokens, Unicode corpus chars, target floor/exhaustion | FEAT-001 | SCN-002, SCN-101, SCN-201 | TC-001, TC-004, TC-005 | AUT-001, AUT-004, AUT-005 | PASS, RUN-2026-001 | Same test log; noted behavior covered at module level. |
-| REQ-003 — Animated controls, presets, pause/instant/reduced motion | FEAT-001, FEAT-005 | SCN-002, SCN-501 | TC-007 (steppable core), TC-102, TC-105 | AUT-007 (partial); no browser automation | PARTIAL: module check PASS; UI NOT_RUN | [Test log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt); manual cases remain unexecuted. |
-| REQ-004 — BPE encode/decode, boundaries and unknowns | FEAT-002 | SCN-003, SCN-101, SCN-201 | TC-003, TC-005, TC-006, TC-008 | AUT-003, AUT-005, AUT-006, AUT-008 | PASS, RUN-2026-001 | [Test log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt). |
-| REQ-005 — Live UI outputs, stats and round-trip status | FEAT-002 | SCN-003, SCN-201, SCN-501 | TC-003, TC-006, TC-103, TC-108 | AUT-003, AUT-006 (module only); no UI automation | PARTIAL: tokenizer PASS; UI NOT_RUN; BUG-002 open | [Test log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt); [`TC-108`](../test-cases/ui-playground/negative.md). |
-| REQ-006 — Search/filter/copy/download vocabulary | FEAT-003 | SCN-004, SCN-301, SCN-501 | TC-010, TC-104 | AUT-010 (map/JSON only); no UI automation | PARTIAL: map check PASS; UI NOT_RUN | [Test log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt); browser export evidence absent. |
-| REQ-007 — Fixed word-level baseline demo | FEAT-004 | SCN-005, SCN-501 | TC-009, TC-101 | AUT-009 (module); no browser test | PARTIAL: module PASS; UI NOT_RUN | [Test log](../evidence/logs/RUN-2026-001-tokenizer-tests.txt). |
-| REQ-008 — Persist theme and training speed | FEAT-005 | SCN-006, SCN-501 | TC-102, TC-105 | None; manual only | NOT_EXECUTED | No browser evidence. See [`TC-105`](../test-cases/ui-playground/positive.md). |
-| REQ-009 — In-browser processing/no app API or DB in this checkout | FEAT-001, FEAT-002 | SCN-001, SCN-301, SCN-401, SCN-402 | TC-001–TC-010 (module), TC-101 (page) | AUT-013 (build only); source inventory; no API/DB suite | Build PASS; browser/deployment boundary NOT_EXECUTED; API/DB N/A | [Build log](../evidence/logs/RUN-2026-001-build.txt). Build does not prove production network behavior. |
+| Requirement | Feature | Scenario / case | Automation | Current result | Evidence / limit |
+| --- | --- | --- | --- | --- | --- |
+| REQ-001 — Train corpus-derived BPE vocab | FEAT-001 | SCN-002; TC-001, TC-002, TC-007, TC-102 | AUT-001/002/007, AUT-017 | Module PASS; browser PARTIAL | [`tokenizer tests`](../evidence/logs/RUN-2026-002-tokenizer-tests.txt); [`E2E`](../evidence/logs/RUN-2026-002-playwright.txt). One preset/custom entry, budget, instant, pause and speed tested; remaining preset variants untested. |
+| REQ-002 — Base tokens, Unicode chars, target floor/exhaustion | FEAT-001 | SCN-002/101/201; TC-001, TC-004, TC-005 | AUT-001/004/005 | PASS at module level; UI unknown Unicode PASS | Unit log and [`encode edge cases`](../evidence/logs/RUN-2026-002-encode-edge-cases.json); large-corpus bounds untested. |
+| REQ-003 — Animated controls, presets, pause/instant/reduced motion | FEAT-001, FEAT-005 | SCN-002/501; TC-102/105/107 | AUT-017 | PARTIAL | Browser verified pause/speed, preset/custom/instant and motion contexts; full reduced-motion timing equivalence and exhaustive presets untested. |
+| REQ-004 — BPE encode/decode, boundaries and unknowns | FEAT-002 | SCN-003/101/201; TC-003/005/006/008/103 | AUT-003/005/006/008, AUT-017 | Module PASS; browser PARTIAL | Unit and browser logs; unknown Unicode, long input and round-trip edge tested; clipboard-denied path untested. |
+| REQ-005 — Live UI output, stats and round-trip status | FEAT-002 | SCN-003/201/501; TC-103/108 | AUT-017 | PARTIAL; BUG-002 RESOLVED | Browser verified live IDs/output, exact whitespace status, copy actions; not every visual stat/control checked. |
+| REQ-006 — Search/filter/copy/download vocabulary | FEAT-003 | SCN-004/301/501; TC-010/104 | AUT-010, AUT-017 | Module PASS; browser PARTIAL | Search by token fragment/ID/no-match, all filters, JSON clipboard/download passed; denial and exhaustive map equality not independently checked. |
+| REQ-007 — Fixed word-level baseline demo | FEAT-004 | SCN-005/501; TC-009/101 | AUT-009, AUT-017/AUT-018 | Module PASS; displayed values PARTIAL/NOT_ASSERTED | Reference tokenizer sample round-trip passed; full page was axe-scanned, but visible demo values were not independently compared with source. |
+| REQ-008 — Persist theme and training speed | FEAT-005 | SCN-006/501; TC-102/105/107 | AUT-017 | PARTIAL PASS | Theme/speed persisted after reload; blocked localStorage fallback/toggle passed (BUG-004 RESOLVED). Normal OS-first-visit, other browsers and storage write denial beyond injected getter case untested. |
+| REQ-009 — In-browser processing/no app API or DB in checkout | FEAT-001/002 | SCN-001/301/401/402; TC-001–010, TC-101 | AUT-013/017 | Build PASS; local offline encode PASS; hosted boundary UNKNOWN | [`build/E2E`](../evidence/logs/RUN-2026-002-playwright.txt); test records no failed requests/page errors in the measured delayed/offline flow. No deployment target supplied. |
 
-## Other requirement trace links
+## Non-functional and business-rule traceability
 
-| ID | Scenario / case | Check and current result |
+| ID | Scenario / case | Current check and status |
 | --- | --- | --- |
-| NFR-001 | SCN-001 | AUT-013 `npm run build`: PASS; root statically prerendered. |
-| NFR-002 / NFR-003 / NFR-007 | SCN-501; TC-105, TC-107 | Manual browser/accessibility checks NOT_RUN. |
-| NFR-004 | SCN-001 | Build passed with local font assets; offline browser check NOT_RUN. |
-| NFR-005 | SCN-301, SCN-701; TC-106 | Source review only; browser network/XSS check NOT_RUN. |
-| NFR-006 | SCN-601 | Performance NOT_EXECUTED; threshold UNKNOWN / REQUIRES VALIDATION. |
-| NFR-008 | SCN-701 | AUT-014/AUT-015 failed with npm audit findings; BUG-001 OPEN. |
-| BR-001/002/005 | SCN-002; TC-001/002 | AUT-001/AUT-002 PASS. |
-| BR-003/004/006/007 | SCN-101/201; TC-004/005/006/008 | AUT-004/005/006/008 PASS. |
-| BR-008 | SCN-201; TC-108 | UI NOT_RUN; BUG-002 OPEN. |
+| NFR-001 — Build/runtime | SCN-001 | AUT-013 build PASS; production-page E2E PASS. |
+| NFR-002 — Responsive/focus | SCN-501; TC-107 | AUT-017 responsive sweep and keyboard subset PASS; full tab order/true zoom not run. |
+| NFR-003 — Reduced motion | SCN-501; TC-105 | Reduced and no-preference contexts exercised; exact motion behavior only PARTIAL. |
+| NFR-004 — Local assets/offline behavior | SCN-001/301 | Offline interaction passed; deployed network boundary not assessed. |
+| NFR-005 — Safe input | SCN-701; TC-106 | Markup-looking input stayed inert in Chromium; deployment headers remain untested. |
+| NFR-006 — Performance | SCN-601 | Single descriptive sample recorded; no agreed threshold, not graded. |
+| NFR-007 — Accessibility | SCN-501; TC-107 | Four axe runs, zero violations; incomplete contrast/manual AT checks remain. |
+| NFR-008 — Dependency security | SCN-701 | AUT-014 full audit FAIL, five high dev/build matches; AUT-015 production-only audit PASS, zero. BUG-001 OPEN. |
+| BR-001–BR-007 — BPE and encode rules | SCN-002/101/201; TC-001–TC-008 | AUT-001–AUT-008 PASS at module level. |
+| BR-008 — Round-trip status | SCN-201; TC-108 | Exact whitespace distinction passed in Chromium; BUG-002 RESOLVED. |
 
-## Traceability gaps
+## Remaining gaps
 
-- UI-only controls and visible outputs have case IDs but no browser automation IDs.
-- No API/database requirements exist in source; those test suites are not applicable rather than silently omitted.
-- Production deployment configuration is not in the repository, so `REQ-009` is only verified at source/build level, not at a hosted network boundary.
+- Full feature-level user acceptance has not been signed off; case-level PARTIAL statuses remain.
+- Only Chromium 153.0.8010.0 was exercised. Firefox, Safari/WebKit, Edge, physical mobile browsers and true browser zoom are NOT_EXECUTED.
+- The browser test does not replace manual screen-reader, voice-control, contrast, full keyboard-order or visual review of every dynamic state.
+- No custom API/database requirement exists in the current code. Deployed hosting behavior/security headers are not evidenced in this checkout.

@@ -1,0 +1,6 @@
+
+> bpe-demo@0.1.0 lint
+> eslint .
+
+
+Exit: 0

@@ -12,10 +12,10 @@
 - **Actual Result:** Assertions passed in AUT-001.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-001`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-002; BR-001, BR-002
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-002 — Merge the most frequent adjacent pair
 
@@ -29,10 +29,10 @@
 - **Actual Result:** Assertions passed in AUT-002.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-002`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-001; BR-005
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-003 — Encode and decode a known corpus sample
 
@@ -46,10 +46,10 @@
 - **Actual Result:** Assertions passed in AUT-003.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-003`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-004, REQ-005; BR-001, BR-007
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-007 — Full training matches one-step-at-a-time training
 
@@ -63,10 +63,10 @@
 - **Actual Result:** Assertions passed in AUT-007.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-007`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-001, REQ-003; BR-005, BR-006
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-009 — Word-level reference tokenizer sample round-trip
 
@@ -80,10 +80,10 @@
 - **Actual Result:** Assertions passed in AUT-009.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-009`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-007
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)
 
 ## TC-010 — Vocabulary entries serialize to the same token→ID map
 
@@ -97,7 +97,7 @@
 - **Actual Result:** Assertions passed in AUT-010.
 - **Status:** PASS
 - **Automation:** AUTOMATED (`AUT-010`)
-- **Evidence:** [`RUN-2026-001-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt)
+- **Evidence:** [`RUN-2026-002-tokenizer-tests.txt`](../../evidence/logs/RUN-2026-002-tokenizer-tests.txt)
 - **Related Requirement:** REQ-006
 - **Related Bug:** None
-- **Last Executed:** 2026-10-07 (RUN-2026-001)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)

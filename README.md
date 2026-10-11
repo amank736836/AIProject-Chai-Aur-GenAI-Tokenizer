@@ -182,4 +182,4 @@ documentation — **max 100 marks**.
 
 Found a bug or have an idea? Open an issue or a pull request — reviews and stars welcome.
 
-Built with Next.js 15, React 19 and TypeScript. GenAI with JavaScript 1.0 · *chai ke saath*.
+Built with Next.js 16, React 19 and TypeScript. GenAI with JavaScript 1.0 · *chai ke saath*.

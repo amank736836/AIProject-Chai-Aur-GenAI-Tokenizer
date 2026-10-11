@@ -285,7 +285,9 @@ export default function Home() {
     [version]
   );
 
-  const roundTripOk = decoded.trim().toLowerCase() === input.trim().toLowerCase();
+  // `decode()` intentionally canonicalizes runs of whitespace, so only claim a
+  // lossless round trip when the visible output exactly matches the input.
+  const roundTripOk = decoded === input;
   const corpusWords = corpus.split(/\s+/).filter(Boolean).length;
 
   const scrollTo = useCallback(

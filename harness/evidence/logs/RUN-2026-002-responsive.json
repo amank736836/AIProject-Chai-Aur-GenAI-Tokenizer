@@ -1,0 +1,418 @@
+{
+  "browserVersion": "153.0.8010.0",
+  "requestedWidths": [
+    320,
+    375,
+    390,
+    425,
+    640,
+    768,
+    820,
+    1024,
+    1280,
+    1366,
+    1440,
+    1920,
+    2560
+  ],
+  "zoomEquivalentCssViewports": [
+    {
+      "baselineViewportWidth": 1280,
+      "scale": 2,
+      "effectiveCssWidth": 640,
+      "actualBrowserZoomApplied": false
+    },
+    {
+      "baselineViewportWidth": 1280,
+      "scale": 4,
+      "effectiveCssWidth": 320,
+      "actualBrowserZoomApplied": false
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "height": 844,
+      "innerWidth": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "header": {
+        "left": 12.8,
+        "right": 307.2,
+        "width": 294.4,
+        "height": 56.8
+      },
+      "menuButton": {
+        "left": 134.2,
+        "right": 174.2,
+        "width": 40,
+        "height": 40
+      },
+      "sourceLink": {
+        "left": 182.2,
+        "right": 227.4,
+        "width": 45.2,
+        "height": 31.4
+      },
+      "themeButton": {
+        "left": 235.4,
+        "right": 297.4,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "none"
+    },
+    {
+      "width": 375,
+      "height": 844,
+      "innerWidth": 375,
+      "documentWidth": 375,
+      "bodyWidth": 375,
+      "header": {
+        "left": 15,
+        "right": 360,
+        "width": 345,
+        "height": 56.8
+      },
+      "menuButton": {
+        "left": 187,
+        "right": 227,
+        "width": 40,
+        "height": 40
+      },
+      "sourceLink": {
+        "left": 235,
+        "right": 280.2,
+        "width": 45.2,
+        "height": 31.4
+      },
+      "themeButton": {
+        "left": 288.2,
+        "right": 350.2,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "none"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "innerWidth": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "header": {
+        "left": 15.6,
+        "right": 374.4,
+        "width": 358.8,
+        "height": 56.8
+      },
+      "menuButton": {
+        "left": 201.4,
+        "right": 241.4,
+        "width": 40,
+        "height": 40
+      },
+      "sourceLink": {
+        "left": 249.4,
+        "right": 294.6,
+        "width": 45.2,
+        "height": 31.4
+      },
+      "themeButton": {
+        "left": 302.6,
+        "right": 364.6,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "none"
+    },
+    {
+      "width": 425,
+      "height": 844,
+      "innerWidth": 425,
+      "documentWidth": 425,
+      "bodyWidth": 425,
+      "header": {
+        "left": 17,
+        "right": 408,
+        "width": 391,
+        "height": 56.8
+      },
+      "menuButton": {
+        "left": 235,
+        "right": 275,
+        "width": 40,
+        "height": 40
+      },
+      "sourceLink": {
+        "left": 283,
+        "right": 328.2,
+        "width": 45.2,
+        "height": 31.4
+      },
+      "themeButton": {
+        "left": 336.2,
+        "right": 398.2,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "none"
+    },
+    {
+      "width": 640,
+      "height": 844,
+      "innerWidth": 640,
+      "documentWidth": 640,
+      "bodyWidth": 640,
+      "header": {
+        "left": 25.6,
+        "right": 614.4,
+        "width": 588.8,
+        "height": 56.8
+      },
+      "menuButton": {
+        "left": 390.8,
+        "right": 430.8,
+        "width": 40,
+        "height": 40
+      },
+      "sourceLink": {
+        "left": 438.8,
+        "right": 534.6,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 542.6,
+        "right": 604.6,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "none"
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "innerWidth": 768,
+      "documentWidth": 768,
+      "bodyWidth": 768,
+      "header": {
+        "left": 30.7,
+        "right": 737.3,
+        "width": 706.5,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 559.3,
+        "right": 655.1,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 663.1,
+        "right": 725.1,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 820,
+      "height": 900,
+      "innerWidth": 820,
+      "documentWidth": 820,
+      "bodyWidth": 820,
+      "header": {
+        "left": 32.8,
+        "right": 787.2,
+        "width": 754.4,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 609.2,
+        "right": 705,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 713,
+        "right": 775,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "innerWidth": 1024,
+      "documentWidth": 1024,
+      "bodyWidth": 1024,
+      "header": {
+        "left": 41,
+        "right": 983,
+        "width": 942.1,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 805.1,
+        "right": 900.8,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 908.8,
+        "right": 970.8,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "innerWidth": 1280,
+      "documentWidth": 1280,
+      "bodyWidth": 1280,
+      "header": {
+        "left": 51.2,
+        "right": 1228.8,
+        "width": 1177.6,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 1050.8,
+        "right": 1146.6,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 1154.6,
+        "right": 1216.6,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "innerWidth": 1366,
+      "documentWidth": 1366,
+      "bodyWidth": 1366,
+      "header": {
+        "left": 63,
+        "right": 1303,
+        "width": 1240,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 1125,
+        "right": 1220.8,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 1228.8,
+        "right": 1290.8,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "innerWidth": 1440,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "header": {
+        "left": 100,
+        "right": 1340,
+        "width": 1240,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 1162,
+        "right": 1257.8,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 1265.8,
+        "right": 1327.8,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 1920,
+      "height": 900,
+      "innerWidth": 1920,
+      "documentWidth": 1920,
+      "bodyWidth": 1920,
+      "header": {
+        "left": 340,
+        "right": 1580,
+        "width": 1240,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 1402,
+        "right": 1497.8,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 1505.8,
+        "right": 1567.8,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "width": 2560,
+      "height": 900,
+      "innerWidth": 2560,
+      "documentWidth": 2560,
+      "bodyWidth": 2560,
+      "header": {
+        "left": 660,
+        "right": 1900,
+        "width": 1240,
+        "height": 60
+      },
+      "menuButton": null,
+      "sourceLink": {
+        "left": 1722,
+        "right": 1817.8,
+        "width": 95.8,
+        "height": 34.6
+      },
+      "themeButton": {
+        "left": 1825.8,
+        "right": 1887.8,
+        "width": 62,
+        "height": 32
+      },
+      "menuDisplay": "flex"
+    },
+    {
+      "orientation": "landscape",
+      "width": 844,
+      "height": 390,
+      "documentWidth": 844,
+      "menuButtonDisplay": "none",
+      "navDisplay": "flex"
+    }
+  ]
+}

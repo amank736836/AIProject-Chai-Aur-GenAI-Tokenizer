@@ -1,0 +1,352 @@
+{
+  "tool": "axe-core",
+  "wcagTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa"
+  ],
+  "audits": {
+    "mobileLight": {
+      "viewport": "390×844",
+      "theme": "light",
+      "violations": 0,
+      "passes": 30,
+      "incomplete": 1,
+      "incompleteRuleIds": [
+        "color-contrast"
+      ],
+      "incompleteNodeCount": 588,
+      "incompleteTargets": [
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-text > strong"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-badge"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".line-mask:nth-child(1) > .line-inner"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".gradient-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".typewriter-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-lead"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-lg.btn-primary.btn > .btn-label"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-lg.btn-ghost.btn > .btn-label"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(1) > dt"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(1) > dd"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(2) > dt"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(2) > dd"
+          ]
+        }
+      ]
+    },
+    "mobileDark": {
+      "viewport": "390×844",
+      "theme": "dark",
+      "violations": 0,
+      "passes": 30,
+      "incomplete": 1,
+      "incompleteRuleIds": [
+        "color-contrast"
+      ],
+      "incompleteNodeCount": 588,
+      "incompleteTargets": [
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-text > strong"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-badge"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".line-mask:nth-child(1) > .line-inner"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".gradient-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".typewriter-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-lead"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-lg.btn-primary.btn > .btn-label"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-lg.btn-ghost.btn > .btn-label"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(1) > dt"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(1) > dd"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(2) > dt"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            "div:nth-child(2) > dd"
+          ]
+        }
+      ]
+    },
+    "desktopDark": {
+      "viewport": "1366×900",
+      "theme": "dark",
+      "violations": 0,
+      "passes": 30,
+      "incomplete": 1,
+      "incompleteRuleIds": [
+        "color-contrast"
+      ],
+      "incompleteNodeCount": 557,
+      "incompleteTargets": [
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-text > strong"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-sub"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#train\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#encode\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link.is-active[href$=\"#vocab\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#demo\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-outline > span"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-badge"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".line-mask:nth-child(1) > .line-inner"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".gradient-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".typewriter-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-lead"
+          ]
+        }
+      ]
+    },
+    "desktopLight": {
+      "viewport": "1366×900",
+      "theme": "light",
+      "violations": 0,
+      "passes": 30,
+      "incomplete": 1,
+      "incompleteRuleIds": [
+        "color-contrast"
+      ],
+      "incompleteNodeCount": 557,
+      "incompleteTargets": [
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-text > strong"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".brand-sub"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#train\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#encode\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link.is-active[href$=\"#vocab\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".nav-link[href$=\"#demo\"]"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".btn-outline > span"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-badge"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".line-mask:nth-child(1) > .line-inner"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".gradient-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".typewriter-text"
+          ]
+        },
+        {
+          "rule": "color-contrast",
+          "target": [
+            ".hero-lead"
+          ]
+        }
+      ]
+    }
+  }
+}

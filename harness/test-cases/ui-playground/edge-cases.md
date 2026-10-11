@@ -4,15 +4,15 @@
 
 - **Feature:** FEAT-005
 - **Priority:** P1
-- **Type:** Manual UI/accessibility
-- **Preconditions:** Browser DevTools responsive mode; keyboard only for first pass.
-- **Steps:** 1. Set viewport to 320 px, 768 px and desktop. 2. Tab through navigation, inputs, buttons, filters and theme toggle. 3. Activate controls with keyboard. 4. Verify focus indicator, reading order, no horizontal overflow and no obscured controls. 5. Repeat with reduced motion and browser zoom.
-- **Test Data:** 320×800, 768×900 and 1440×900 viewports; keyboard; 200% zoom.
-- **Expected Result:** All controls remain reachable/usable; visible focus; no essential content is hidden or clipped; motion preference is respected.
-- **Actual Result:** NOT_EXECUTED.
-- **Status:** NOT_RUN
-- **Automation:** MANUAL
-- **Evidence:** None (not executed).
+- **Type:** UI/accessibility/responsive
+- **Preconditions:** Chromium production build.
+- **Steps:** Test narrow, tablet, desktop and mobile-landscape layouts; use keyboard activation, Escape, shortcuts, focus targets and native touch; inspect WCAG-tagged accessibility results.
+- **Test Data:** 320, 375, 390, 425, 640, 768, 820, 1024, 1280, 1366, 1440, 1920 and 2560 CSS-pixel widths; 844×390 landscape; effective-width proxies for 200%/400% zoom.
+- **Expected Result:** No horizontal overflow/clipped header controls; keyboard/touch operations remain usable; no automatically-detected WCAG 2.2 AA violations.
+- **Actual Result:** **PARTIAL.** Chromium responsive checks passed at all listed widths and 844×390; keyboard Enter/Escape/shortcuts, focus return, touch menu/speed/filter, and four axe-core audits (mobile/desktop × light/dark) passed. A 1280px baseline's effective 640px/320px layout widths were exercised as 2×/4× zoom-equivalent proxies, not through actual browser zoom. Full tab-order/screen-reader checks and manual review of axe's incomplete color-contrast nodes remain unverified.
+- **Status:** PARTIAL
+- **Automation:** Playwright Chromium with a touch-enabled context; axe-core.
+- **Evidence:** `harness/automation/e2e/playground.spec.mjs`; [`responsive`](../../evidence/logs/RUN-2026-002-responsive.json), [`accessibility`](../../evidence/logs/RUN-2026-002-accessibility.json), [`screenshots`](../../evidence/screenshots/RUN-2026-002/).
 - **Related Requirement:** NFR-002, NFR-003, NFR-007
-- **Related Bug:** None
-- **Last Executed:** NOT_EXECUTED
+- **Related Bug:** BUG-003 (RESOLVED)
+- **Last Executed:** 2026-10-11 (RUN-2026-002)

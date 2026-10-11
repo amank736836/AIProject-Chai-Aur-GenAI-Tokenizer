@@ -1,0 +1,46 @@
+
+> bpe-demo@0.1.0 test:e2e
+> npm run build && playwright test --config=harness/automation/e2e/playwright.config.mjs
+
+
+> bpe-demo@0.1.0 build
+> next build
+
+▲ Next.js 16.4.0 (Turbopack)
+✓ Running next.config.ts took 39ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 678ms
+  Running TypeScript ...
+  Finished TypeScript in 1796ms ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/4) ...
+  Generating static pages using 1 worker (1/4)
+  Generating static pages using 1 worker (2/4)
+  Generating static pages using 1 worker (3/4)
+✓ Generating static pages using 1 worker (4/4) in 213ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+
+Running 11 tests using 1 worker
+
+  ✓   1 harness/automation/e2e/playground.spec.mjs:48:1 › all requested widths reflow without horizontal overflow or clipped header controls (16.6s)
+  ✓   2 harness/automation/e2e/playground.spec.mjs:150:1 › hero reveal animation and typewriter work without reduced-motion preference (27.4s)
+  ✓   3 harness/automation/e2e/playground.spec.mjs:172:1 › theme control degrades gracefully when localStorage is blocked (4.8s)
+  ✓   4 harness/automation/e2e/playground.spec.mjs:191:1 › hero actions, corpus presets, vocabulary budget and instant training work (18.1s)
+  ✓   5 harness/automation/e2e/playground.spec.mjs:215:1 › mobile section navigation is keyboard accessible and browser history works (13.3s)
+  ✓   6 harness/automation/e2e/playground.spec.mjs:254:1 › native touch opens navigation and operates training and vocabulary controls (7.1s)
+  ✓   7 harness/automation/e2e/playground.spec.mjs:277:1 › training controls pause cleanly, speed persists and empty corpora fail safely (15.0s)
+  ✓   8 harness/automation/e2e/playground.spec.mjs:316:1 › encode/decode, exact round-trip messaging, keyboard shortcuts, copy, and long Unicode input work (12.5s)
+  ✓   9 harness/automation/e2e/playground.spec.mjs:383:1 › vocabulary search, filters, clipboard JSON, download and scroll-region focus work (13.6s)
+  ✓  10 harness/automation/e2e/playground.spec.mjs:428:1 › axe WCAG 2.2 AA audits pass on mobile and desktop in light and dark themes (39.9s)
+  ✓  11 harness/automation/e2e/playground.spec.mjs:474:1 › production load survives delayed assets and offline client-side interaction (7.6s)
+
+  11 passed (3.0m)

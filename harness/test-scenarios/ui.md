@@ -1,16 +1,21 @@
-# UI Scenarios (Manual)
+# UI Scenario — Browser interaction, responsive and accessibility sweep
 
 ## SCN-501 — Browser interaction and accessibility sweep
 
-**Preconditions:** Run `npm run dev` or `npm run build && npm run start`; use a real browser. No browser automation dependency is present.
+**Preconditions:** Run `npm run test:e2e` (builds the production app and starts it on port 4173). For manual follow-up, use a real browser and a clean profile.
 
-1. Load `/`; inspect all sections, navigation and console for hydration/runtime errors.
-2. At desktop and narrow viewports, navigate by keyboard and pointer; check focus visibility, section anchors and horizontal overflow.
-3. Train preset/custom corpus; use speed, stop and instant training; verify status and merge output.
-4. Edit input; check token stream, IDs, decoded value, clear shortcut, Enter/copy behavior and clipboard-denied path.
-5. Search/filter vocabulary; check no-match state, JSON clipboard and downloaded file.
-6. Toggle theme; reload and change OS color scheme. Repeat with localStorage denied/unavailable if feasible.
-7. Enable reduced motion; confirm the page remains usable and training completes without waiting for animated merges.
-8. Use screen-reader tooling to validate meaningful labels, headings, status/toast announcements and hidden decorative effects.
+The Playwright suite in `automation/e2e/playground.spec.mjs` executes Chromium checks for:
 
-**Cases:** TC-101–TC-108. All NOT_EXECUTED as of RUN-2026-001. Browser support matrix and accessibility target are UNKNOWN / REQUIRES VALIDATION.
+1. Requested widths from 320px through 2560px, including 640px zoom-equivalent layout widths, plus 844×390 mobile landscape; measure document/body overflow and header-control bounds; capture representative screenshots.
+2. Hero reveal/typewriter behavior with motion enabled.
+3. Mobile section navigation by keyboard and pointer, Escape/focus return, URL fragments/back/forward, and persisted theme.
+4. Native touch emulation for the mobile menu, training speed control and vocabulary filter.
+5. Training pause/speed persistence/empty-corpus edge behavior; encode/decode, exact round-trip messaging, clipboard IDs, shortcuts, markup-like input, Unicode/long text; vocabulary search/filter/copy/download/focus.
+6. axe-core WCAG 2.2 AA tagged audits at mobile and desktop widths in light and dark themes.
+7. Delayed static assets and offline client-side encoding, with performance observers and console/request failure checks.
+
+**Latest result:** RUN-2026-002 executed all automated Chromium scenarios. See [`execution record`](../test-results/historical/RUN-2026-002.md), [`responsive geometry`](../evidence/logs/RUN-2026-002-responsive.json), [`accessibility`](../evidence/logs/RUN-2026-002-accessibility.json), [`performance`](../evidence/logs/RUN-2026-002-performance.json), and [screenshots](../evidence/screenshots/RUN-2026-002/).
+
+**Coverage limitations:** Only bundled headless Chromium was used; Firefox, Safari/WebKit, Edge and physical devices were not available/exercised. The width=640 and 320 cases are zoom-equivalent effective-CSS-width proxies for 200%/400% zoom from a 1280px baseline, not true browser zoom. Full keyboard traversal, screen readers, manual contrast review, localStorage/clipboard denial and deployed-host behavior remain untested. Supported browser matrix and formal a11y target are UNKNOWN / REQUIRES VALIDATION.
+
+**Cases:** TC-101–TC-108. Statuses are in [`UI test cases`](../test-cases/ui-playground/positive.md) and the RUN report; partial automation must not be called a complete manual-case pass.

@@ -1,27 +1,31 @@
-# Latest Execution
+# Latest Execution — RUN-2026-002
 
-**Execution ID:** RUN-2026-001  
-**Date:** 2026-10-07  
-**Environment:** Linux sandbox; Node 22.22.3, npm 10.9.8; clean install via `npm ci`.  
-**Commit under test:** `8f61d26840e4ac916b33ecf668b93ac2efd6e9ee` (application sources); harness files were working-tree additions during this run.  
-**Tester/Agent:** Arena Agent Mode  
-**Test Suite:** Node `node:test` tokenizer suite; harness Markdown link validation; ESLint; TypeScript check; Next production build; full and production-only npm audits.
+**Execution ID:** RUN-2026-002<br>
+**Date:** 2026-10-11<br>
+**Environment:** Linux sandbox; Node 22.22.3; npm 10.9.8; optimized Next.js production build; headless Chromium 153.0.8010.0.<br>
+**Branch:** `arena/a2b184f1-aiproject-chai-aur-genai-token`; changes tested in working tree based on `0a1c115ba180dd62c46e9b2d189fdf97a1c7a193` and committed afterward.<br>
+**Test suite:** 10 tokenizer unit tests; 11 Playwright E2E tests; lint, TypeScript, build, local Markdown links, full and production-only npm audits.
 
 ## Results
 
 | Measure | Result |
 | --- | ---: |
-| Total executed checks | 16 (10 unit tests + 4 static/build/documentation checks + 2 dependency audits) |
-| Passed | 14 (10 unit + link check + lint + type-check + build) |
-| Failed | 2 (audit commands exit 1 because advisories were found) |
+| Tokenizer module tests | 10 PASS, 0 FAIL |
+| Chromium browser tests | 11 PASS, 0 FAIL |
+| Lint / type-check / build / harness link check | 4 PASS |
+| Full dependency audit | 1 audit command failed on five high dev/build advisory matches |
+| Production-only audit | 1 PASS, zero findings |
 | Blocked | 0 |
-| Not run | 8 manual UI cases; performance profiling and VAPT; deployment HTTP smoke |
-| Not applicable | Database suite; custom API functional suite |
-| Core tokenizer case pass rate | 10/10 (100%) |
-| All executed check-item rate | 14/16 (87.5%; includes security scans that correctly fail on findings) |
+| Not run | Firefox/Safari-WebKit/Edge, true browser zoom, physical mobile browsers, full screen-reader/voice-control/tab-order review, manual contrast review, VAPT, hosted smoke/security headers, performance SLO testing |
+| Not applicable | Custom API/database functional suites |
 
-**Critical failures:** full dependency audit reports 2 critical; production-only audit reports 1 critical and 4 high. These are npm advisory findings, not proven exploits.  
-**Known issues:** BUG-001 (dependency advisories, OPEN); BUG-002 (round-trip indicator semantics, OPEN; UI case not run).  
-**Evidence:** [tokenizer tests](../../evidence/logs/RUN-2026-001-tokenizer-tests.txt), [link check](../../evidence/logs/RUN-2026-001-link-check.txt), [lint](../../evidence/logs/RUN-2026-001-lint.txt), [typecheck](../../evidence/logs/RUN-2026-001-typecheck.txt), [build](../../evidence/logs/RUN-2026-001-build.txt), [audit summary and raw JSON](../../evidence/logs/RUN-2026-001-npm-audit.txt).
+## Key findings
 
-Full command list and notes: [`../historical/RUN-2026-001.md`](../historical/RUN-2026-001.md). This run does not establish browser UI, production host, performance, accessibility or VAPT readiness.
+- Responsive sweep passed at 320, 375, 390, 425, 640, 768, 820, 1024, 1280, 1366, 1440, 1920 and 2560px; 844×390 landscape also passed. No measured horizontal overflow.
+- 640px/320px are 200%/400% effective CSS-width proxies from 1280px, not actual browser zoom.
+- axe-core ran at mobile/desktop × light/dark, with zero automated violations; color-contrast remained incomplete for 557–588 nodes per run.
+- Performance sample: TTFB 8ms, DOMContentLoaded 241ms, load 396ms, LCP 864ms, CLS 0.000; four long tasks >50ms; no failed requests/page errors in the measured delayed/offline flow. No formal threshold; not graded.
+- BUG-002, BUG-003 and BUG-004 were resolved with browser regressions. BUG-001 remains open for dev/build dependency advisories.
+- Readiness: **READY WITH RISKS** for a Chromium-first demo; no cross-browser, WCAG certification or hosted production sign-off.
+
+Full details: [`historical/RUN-2026-002.md`](../historical/RUN-2026-002.md), [`severity-ranked application audit`](../../reports/application-audit-RUN-2026-002.md), and raw [`evidence`](../../evidence/README.md).

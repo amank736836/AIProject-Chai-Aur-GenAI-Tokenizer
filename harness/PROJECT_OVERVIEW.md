@@ -19,14 +19,14 @@ There are no user accounts, roles, or administrator flows in the repository.
 
 | Area | Observed implementation |
 | --- | --- |
-| Framework / routing | Next.js 15.4.10 App Router; one application route at `/` |
+| Framework / routing | Next.js 16.4.0 App Router; one application route at `/` |
 | UI | React 19.1.0, TypeScript 5, client-side React state |
 | Styling | `src/app/globals.css`; Tailwind CSS 4 is wired through PostCSS, alongside substantial hand-written CSS |
 | Tokenizer | Custom TypeScript BPE implementation in `src/lib/bpe.ts`; reference word tokenizer in `src/tokenizer.ts` |
 | Fonts | Local Geist Sans, Geist Mono and Space Grotesk via `next/font/local`; OFL license files are checked in |
 | Static assets | `public/` SVGs and an app favicon |
 | Lint / type check / build | ESLint 9 with `eslint-config-next`; TypeScript; Next build |
-| Automated tests at repository baseline | None found. This harness adds Node's built-in test runner tests for the tokenizer modules; it adds no package dependency. |
+| Automated tests | Node `node:test` tokenizer suite plus Playwright/axe-core browser E2E using bundled Chromium; configured under `harness/automation/`. |
 
 Exact Node/npm support ranges are not declared in a version file. Validation in this checkout used Node 22.22.3 and npm 10.9.8.
 
@@ -82,5 +82,5 @@ No credentials or secrets are required by the application. Corpus and encode tex
 
 - Runtime: Next.js, React, React DOM.
 - Development/build: TypeScript, ESLint/Next config, Tailwind PostCSS plugin, font packages.
-- `npm ci` on 2026-10-07 completed, and npm reported 23 dependency vulnerabilities (2 moderate, 19 high, 2 critical). A production-only audit reported 5 (4 high, 1 critical). These are dependency audit findings, not evidence of exploitability in a particular deployment; see [`bugs/open/BUG-001.md`](bugs/open/BUG-001.md) and [`evidence/logs/RUN-2026-001-npm-audit.txt`](evidence/logs/RUN-2026-001-npm-audit.txt).
+- RUN-2026-002 `npm audit` (2026-10-11) reported five high advisory matches in development/build tooling (`eslint-config-next`, `@next/eslint-plugin-next`, `braces`, `fast-glob`, `micromatch`); `npm audit --omit=dev` reported zero. These matches are not evidence of exploitability in a particular CI/deployment environment. See [`bugs/open/BUG-001.md`](bugs/open/BUG-001.md) and [`evidence/logs/RUN-2026-002-npm-audit-full.json`](evidence/logs/RUN-2026-002-npm-audit-full.json).
 - Formal performance targets, supported browser matrix, accessibility conformance target and deployment security headers are not specified: **UNKNOWN / REQUIRES VALIDATION**.

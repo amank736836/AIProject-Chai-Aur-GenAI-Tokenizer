@@ -2,9 +2,10 @@
 
 ## Prerequisites
 
-- Install the repository's locked packages: `npm ci` (do not use a lockfile-changing install for a routine test run).
-- Use the repository's Next-compatible Node version; no version file is checked in. Harness validation used Node 22.22.3/npm 10.9.8.
-- No `.env` values, credentials, external API, database, browser driver or new dependency are required for tokenizer tests.
+- Install the repository's locked packages: `npm ci`.
+- Use the repository's Next-compatible Node version; no version file is checked in. RUN-2026-002 used Node 22.22.3 and npm 10.9.8.
+- No `.env` values, credentials, external API or database are needed.
+- Playwright E2E uses `@sparticuz/chromium` bundled from npm; no browser download or external browser driver install is required in this sandbox.
 
 ## Commands
 
@@ -14,57 +15,49 @@ node harness/automation/scripts/run-tokenizer-tests.mjs
 node harness/automation/scripts/verify-harness-links.mjs
 npm run lint
 npx tsc --noEmit
-npm run build
+npm run test:e2e
 npm audit
 npm audit --omit=dev
 ```
 
-`npm run start` requires a successful build and serves the production build. `npm run dev` is for interactive manual UI testing. Do not point tests at production user data.
+`npm run test:e2e` builds the production app and runs Playwright using the production server at `http://127.0.0.1:4173`. It is Chromium-only; see `automation/e2e/` and `test-results/historical/RUN-2026-002.md`. Test traces/reports are stored under the ignored root `.playwright-results/` directory. `npm run start` serves a built app; a manual deployment smoke still requires an explicitly supplied host.
 
 ## Tool records
 
 ### Node `node:test` + TypeScript compiler API
 
-- **Purpose:** Unit-test the two tokenizer modules without adding Jest/Vitest/tsx.
-- **Installation:** Already present as Node runtime (`node:test`) and project dev dependency (`typescript`).
-- **Configuration:** `automation/scripts/run-tokenizer-tests.mjs` compiles only `src/lib/bpe.ts` and `src/tokenizer.ts` with strict TS settings to an OS temp directory; `automation/unit/tokenizer.test.mjs` runs through `node --test`.
+- **Purpose:** Unit-test the tokenizer modules without Jest/Vitest/tsx.
 - **How to run:** `node harness/automation/scripts/run-tokenizer-tests.mjs`.
-- **Expected output:** TAP summary; 10 tests passing at current suite size (verify on every run).
-- **Results stored:** Runner output can be captured at `evidence/logs/` and summarized in `test-results/`.
-- **Known limitations:** No React/browser rendering, DOM, clipboard, download, CSS, or deployed HTTP test. Temporary compiler output is removed after completion.
+- **Result:** 10/10 passed in RUN-2026-002.
+- **Limitations:** Module-level checks only; does not cover React rendering, clipboard, downloads, CSS or browsers.
+
+### Playwright + Sparticuz Chromium
+
+- **Purpose:** Execute rendered behavior against the optimized production app, including the requested viewport sweep, native touch emulation, keyboard, theme persistence, user flows and delayed/offline assets.
+- **How to run:** `npm run test:e2e`.
+- **Configuration:** `automation/e2e/playwright.config.mjs`, `fixtures.mjs`, `playground.spec.mjs`.
+- **Result:** 11/11 tests passed in RUN-2026-002 after the final verified run; see the run record and evidence logs.
+- **Limitations:** Firefox, Safari/WebKit, Edge, physical devices, true desktop browser zoom, full screen-reader testing and manual color-contrast evaluation were not executed. Zoom-equivalent CSS viewport checks are explicitly proxies, not true zoom.
+
+### axe-core
+
+- **Purpose:** Automated WCAG-tagged issue detection on the whole rendered page.
+- **Result:** RUN-2026-002 recorded zero violations in four audits: 390×844 light/dark and 1366×900 light/dark. Color-contrast produced incomplete/manual-review results; this is not a certification.
 
 ### Harness Markdown link check
 
-- **Purpose:** Verify relative links in harness Markdown point to existing files/directories.
-- **Installation:** Node built-ins only.
-- **Configuration:** `automation/scripts/verify-harness-links.mjs`.
+- **Purpose:** Verify relative local Markdown link targets exist.
 - **How to run:** `node harness/automation/scripts/verify-harness-links.mjs`.
-- **Expected output:** Verified link/document counts and exit 0; a broken local link exits 1.
-- **Results:** [`RUN-2026-001-link-check.txt`](../evidence/logs/RUN-2026-001-link-check.txt).
-- **Known limitations:** Checks target existence, not remote URL health, anchor IDs or prose correctness.
+- **Limitations:** Does not verify remote links, anchors or prose.
 
-### Next.js lint/build/type check
+### Lint, type-check and build
 
-- **Purpose:** ESLint, TypeScript validity and production compilation/prerender.
-- **Installation/configuration:** `package.json`, `eslint.config.mjs`, `tsconfig.json`, `next.config.ts`.
-- **How to run:** Commands above.
-- **Expected output:** Exit code 0; build lists static `/` route.
-- **Results:** RUN-2026-001 logs.
-- **Known limitations:** Build success is not a browser/UI test, production security scan or deployment test.
+- **Purpose:** Static checks and optimized production compilation.
+- **How to run:** `npm run lint`, `npx tsc --noEmit`, `npm run build`.
+- **Limitations:** Build success is not browser, deployment or security sign-off.
 
 ### npm audit
 
 - **Purpose:** Match resolved lockfile packages to npm advisories.
-- **How to run:** `npm audit` and `npm audit --omit=dev` after clean install.
-- **Expected output:** Exit 0 only when no reportable findings; exit 1 on current findings.
-- **Results:** `evidence/logs/RUN-2026-001-npm-audit.txt`.
-- **Known limitations:** Advisory matching is not VAPT and does not establish exploitability/applicability. Do not automatically apply breaking changes.
-
-### Browser manual tools
-
-- **Purpose:** UI, accessibility, privacy/network and performance scenarios.
-- **Installation/configuration:** Use browser DevTools and a clean test profile against local `npm run dev` or built `npm run start`.
-- **How to run:** Follow `test-scenarios/ui.md`, `performance.md` and `security.md`.
-- **Expected output:** Record browser/version, viewport/preferences, actions, actual results and evidence.
-- **Results:** None yet; these checks are NOT_EXECUTED.
-- **Known limitations:** Supported browser matrix and performance/a11y acceptance thresholds are UNKNOWN / REQUIRES VALIDATION.
+- **Result:** Full graph reported five high development/build dependency advisories; production-only audit reported zero findings in RUN-2026-002. See BUG-001 and the JSON evidence.
+- **Limitations:** Advisory matching is not VAPT and does not establish exploitability. Do not automatically apply incompatible major-version changes.
