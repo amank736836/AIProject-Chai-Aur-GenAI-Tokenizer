@@ -10,7 +10,7 @@
     "test:e2e": "npm run build && playwright test --config=harness/automation/e2e/playwright.config.mjs"
   },
   "dependencies": {
-    "next": "16.4.0",
+    "next": "16.4.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
